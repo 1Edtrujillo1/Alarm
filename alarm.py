@@ -11,22 +11,26 @@ clock = Tk()
 clock.geometry('400x200')
 clock.title('Alarm Clock')
 
-Label(master=clock, text='Enter time in 24 hrs format.',
-      font='Arial', bg='black', fg='red').place(x=60, y=120)
-Label(master=clock, text='Hour Min Sec',
-      font=60).place(x=110)
-Label(master=clock, text='When to wake you up?',
-      font=("Helevetica", 7, "bold"), fg='blue',
-      relief='solid').place(x=0, y=29)
+list(map(
+    lambda text, font, bg, fg, relief, x, y:
+    Label(master=clock, text=text, font=font,
+          bg=bg, fg=fg, relief=relief).place(x=x, y=y),
+    ['Enter time in 24 hrs format.', 'Hour Min Sec', 'When to wake you up?'],
+    ['Arial', 60, ("Helevetica", 7, "bold")],
+    ['black', None, None],
+    ['red', None, 'blue'],
+    [None, None, 'solid'],
+    [60, 110, 0],
+    [120, None, 29]
+))
 
 # 2.0 Make the Input Boxes ----
 
-Entry(master=clock, textvariable=StringVar(),
-      bg='pink', width=15).place(x=110, y=30)
-Entry(master=clock, textvariable=StringVar(),
-      bg='pink', width=15).place(x=150, y=30)
-Entry(master=clock, textvariable=StringVar(),
-      bg='pink', width=15).place(x=200, y=30)
+list(map(
+    lambda x: Entry(master=clock, textvariable=StringVar(),
+                    bg='pink', width=15).place(x=x, y=30),
+    [110, 150, 200]
+))
 
 # 3.0 Button to execute a command ----
 
