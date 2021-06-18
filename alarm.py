@@ -1,11 +1,34 @@
-# 0.0 Import Modules ----
+# 0.0 Import Modules & function reference ----
 
 from tkinter import *
 import datetime
 import time
 import winsound
 
+#from inputs_reference import alarm
+
+
+def alarm():
+
+    while True:
+
+        time.sleep(1)
+
+        current_info = datetime.datetime.now()
+        time_now = current_info.strftime("%H:%M:%S")
+
+        print("Today day is: ",
+              current_info.strftime("%d/%m/%Y"),
+              "\n",
+              time_now)
+
+        if time_now == f"{hour.get()}:{min.get()}:{sec.get()}":
+            print("Wake up little bastard!!!")
+            winsound.PlaySound("sound.wav", winsound.SND_ASYNC)
+            break
+
 # 1.0 Dialog Box Generator ----
+
 
 clock = Tk()
 clock.geometry('400x200')
@@ -24,24 +47,29 @@ list(map(
     [120, None, 29]
 ))
 
-# 2.0 Make the Input Boxes ----
+# 2.0 Required alarm variables ----
+
+hour, min, sec = [StringVar(), StringVar(), StringVar()]
+
+# 3.0 Make the Input Boxes ----
 
 list(map(
-    lambda x: Entry(master=clock, textvariable=StringVar(),
-                    bg='pink', width=15).place(x=x, y=30),
+    lambda t, x: Entry(master=clock, textvariable=t,
+                       bg='pink', width=15).place(x=x, y=30),
+    [hour, min, sec],
     [110, 150, 200]
 ))
 
-# 3.0 Button to execute a command ----
+# 4.0 Button to execute a command ----
 
 Button(master=clock,
        text='Set Alarm',
-       #command = actual_time,
+       command=alarm,
        fg='red',
        width=10
        ).place(x=110, y=70)
 
-# 4.0 Execution
+# 5.0 Execution
 
 clock.mainloop()
 
