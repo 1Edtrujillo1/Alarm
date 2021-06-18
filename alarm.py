@@ -1,11 +1,9 @@
-# 0.0 Import Modules & function reference ----
+# 0.0 Import Modules  ----
 
 from tkinter import *
 import datetime
 import time
 import winsound
-
-#from inputs_reference import alarm
 
 
 def alarm():
