@@ -7,6 +7,13 @@ import winsound
 
 
 def alarm():
+    """Print the date & time every second (while loop). Break with 
+        a sound at the time defined by the user and print a string 
+        message.
+
+        Returns:
+        command where the user can interact
+    """
 
     while True:
 
